@@ -1,0 +1,11 @@
+{
+	"name": "jawjawjaw.dev",
+	"version": "1.0.0",
+	"description": "jaw personal site",
+	"main": "index.js",
+	"scripts": {
+		"build": "npm run index.js"
+	},
+	"author": "jaw",
+	"license": "ISC"
+}
