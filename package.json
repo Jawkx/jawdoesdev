@@ -4,8 +4,17 @@
 	"description": "jaw personal site",
 	"main": "index.js",
 	"scripts": {
-		"build": "npm run index.js"
+		"start": "chromium output/index.html",
+		"build": "node index.js && tailwindcss -i ./src/input.css -o ./output/styles.css"
 	},
+	"type": "module",
 	"author": "jaw",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"cheerio": "^1.0.0",
+		"markdown-it": "^14.1.0"
+	},
+	"devDependencies": {
+		"tailwindcss": "^3.4.12"
+	}
 }
