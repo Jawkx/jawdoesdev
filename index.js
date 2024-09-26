@@ -13,11 +13,11 @@ const styleMd = ($) => {
     $('a').attr('target', '_blank')
 }
 
-const $home = cheerio.load(fs.readFileSync("src/index.html", "utf8"))
-const $homeContent = cheerio.load(md.render(fs.readFileSync("src/home.md", "utf8")))
+const $home = cheerio.load(fs.readFileSync("src/html/index.html", "utf8"))
+const $homeContent = cheerio.load(md.render(fs.readFileSync("src/md/home.md", "utf8")))
 
-const $blog = cheerio.load(fs.readFileSync("src/blog.html", "utf8"))
-const $rambles = cheerio.load(fs.readFileSync("src/rambles.html", "utf8"))
+const $blog = cheerio.load(fs.readFileSync("src/html/blog.html", "utf8"))
+const $rambles = cheerio.load(fs.readFileSync("src/html/rambles.html", "utf8"))
 
 styleMd($homeContent)
 
