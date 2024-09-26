@@ -13,16 +13,20 @@ const styleMd = ($) => {
     $('a').attr('target', '_blank')
 }
 
+// Reading
 const $home = cheerio.load(fs.readFileSync("src/html/index.html", "utf8"))
 const $homeContent = cheerio.load(md.render(fs.readFileSync("src/md/home.md", "utf8")))
 
 const $blog = cheerio.load(fs.readFileSync("src/html/blog.html", "utf8"))
 const $rambles = cheerio.load(fs.readFileSync("src/html/rambles.html", "utf8"))
 
+// Styling
 styleMd($homeContent)
 
+// Compiling
 $home('[id=main]').html($homeContent.html())
 
+// Writing
 fs.writeFileSync("output/index.html", $home.html())
 fs.writeFileSync("output/home.html", $home.html())
 fs.writeFileSync("output/blog.html", $blog.html())
