@@ -9,12 +9,4 @@ It's this website! It may looks simple as it's just a plain html website, but it
 
 ## Misc
 
-[keyboard](https://blog.zsa.io/cdn-cgi/image/fit=scale-down,quality=80,format=auto,width=2080/voyager-shifted-layout/voyager-double-shifted-layout.jpg)
-
-[editor](https://neovim.io/)
-
-[os](https://archlinux.org/)
-
-[yee](https://youtu.be/q6EoRBvdVPQ?si=3aQNx1jW9ShzKgvg)
-
-[🇲🇾](https://www.youtube.com/watch?v=CdQjX07B4H4)
+[keyboard](https://blog.zsa.io/cdn-cgi/image/fit=scale-down,quality=80,format=auto,width=2080/voyager-shifted-layout/voyager-double-shifted-layout.jpg) | [editor](https://neovim.io/) | [os](https://archlinux.org/) | [yee](https://youtu.be/q6EoRBvdVPQ?si=3aQNx1jW9ShzKgvg) 
