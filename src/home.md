@@ -16,3 +16,5 @@ It's this website! It may looks simple as it's just a plain html website, but it
 [os](https://archlinux.org/)
 
 [yee](https://youtu.be/q6EoRBvdVPQ?si=3aQNx1jW9ShzKgvg)
+
+[🇲🇾](https://www.youtube.com/watch?v=CdQjX07B4H4)
