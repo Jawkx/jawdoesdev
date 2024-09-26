@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "chromium output/index.html",
-		"build": "node index.js && tailwindcss -i ./src/input.css -o ./output/styles.css"
+		"build": "node index.js && tailwindcss -i ./src/input.css -o ./output/styles.css",
+		"deploy": "npm run build && source ./.env && npx wrangler pages deploy output"
 	},
 	"type": "module",
 	"author": "jaw",
@@ -15,6 +16,7 @@
 		"markdown-it": "^14.1.0"
 	},
 	"devDependencies": {
-		"tailwindcss": "^3.4.12"
+		"tailwindcss": "^3.4.12",
+		"wrangler": "^3.78.10"
 	}
 }
