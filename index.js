@@ -33,21 +33,13 @@ fs.writeFileSync("output/home.html", $home.html())
 fs.writeFileSync("output/blog.html", $blog.html())
 fs.writeFileSync("output/rambles.html", $rambles.html())
 
-const srcFolder = './src/assets';
-const destFolder = './output';
+const assetsDir = './src/assets';
+const outputDir = './output';
 
-fs.readdir(srcFolder, (err, files) => {
-    if (err) {
-        console.error(err);
-    } else {
-        files.forEach((file) => {
-            const srcPath = path.join(srcFolder, file);
-            const destPath = path.join(destFolder, file);
-            fs.copyFile(srcPath, destPath, (err) => {
-                if (err) {
-                    console.error(err);
-                }
-            });
-        });
-    }
+const assets = fs.readdirSync(assetsDir);
+
+assets.forEach((asset) => {
+    const srcPath = path.join(assetsDir, asset);
+    const destPath = path.join(outputDir, asset);
+    fs.copyFileSync(srcPath, destPath);
 });
