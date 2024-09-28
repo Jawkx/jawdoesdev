@@ -1,6 +1,7 @@
 import fs from "fs"
 import * as cheerio from 'cheerio';
 import markdownit from 'markdown-it';
+import path from "path";
 
 const md = markdownit()
 
@@ -31,3 +32,22 @@ fs.writeFileSync("output/index.html", $home.html())
 fs.writeFileSync("output/home.html", $home.html())
 fs.writeFileSync("output/blog.html", $blog.html())
 fs.writeFileSync("output/rambles.html", $rambles.html())
+
+const srcFolder = './src/assets';
+const destFolder = './output';
+
+fs.readdir(srcFolder, (err, files) => {
+    if (err) {
+        console.error(err);
+    } else {
+        files.forEach((file) => {
+            const srcPath = path.join(srcFolder, file);
+            const destPath = path.join(destFolder, file);
+            fs.copyFile(srcPath, destPath, (err) => {
+                if (err) {
+                    console.error(err);
+                }
+            });
+        });
+    }
+});
