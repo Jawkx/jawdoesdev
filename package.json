@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "chromium output/index.html",
-		"build": "npx tsc && node index.js && tailwindcss -i ./src/input.css -o ./output/styles.css",
+		"build": "npx tsc && node src/scripts/build.js && tailwindcss -i ./src/input.css -o ./output/styles.css",
 		"deploy": "npm run build && source ./.env && npx wrangler pages deploy output"
 	},
 	"type": "module",
