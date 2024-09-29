@@ -4,6 +4,7 @@
 	"description": "jaw personal site",
 	"main": "index.js",
 	"scripts": {
+		"init": "mkdir -p output && mkdir -p src/md/rambles",
 		"start": "chromium output/index.html",
 		"build": "npx tsc && node src/scripts/build.js && tailwindcss -i ./src/input.css -o ./output/styles.css",
 		"deploy": "npm run build && source ./.env && npx wrangler pages deploy output"
