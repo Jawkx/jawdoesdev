@@ -2,6 +2,8 @@ import fs from "fs"
 import * as cheerio from 'cheerio';
 import markdownit from 'markdown-it';
 import path from "path";
+import rambles from "../content/rambles.json" with {type: "json"}
+import { Ramble } from "../types/Ramble";
 
 const md = markdownit()
 
@@ -20,6 +22,32 @@ const $homeContent = cheerio.load(md.render(fs.readFileSync("src/content/home.md
 
 const $blog = cheerio.load(fs.readFileSync("src/html/blog.html", "utf8"))
 const $rambles = cheerio.load(fs.readFileSync("src/html/rambles.html", "utf8"))
+
+// Rambles Generation
+const typedRambles = rambles as unknown as Ramble[]
+
+typedRambles.forEach((ramble) => {
+    const rambleDate = new Date(ramble.date)
+
+    const formattedDate = rambleDate.toLocaleDateString("en-Gb", {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    })
+
+    const $content = cheerio.load(`
+        <div>
+            <h3>${ramble.content}</h3>
+            <p>${formattedDate}</p>
+        </div>
+    `)
+
+    styleMd($content)
+    $rambles('[id=rambles]').append($content.html())
+})
 
 // Styling
 styleMd($homeContent)

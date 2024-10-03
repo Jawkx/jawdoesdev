@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Jaw's rambles</title>
+	<title>Rambles</title>
     <link rel="stylesheet" type = "text/css" href= "styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 </head>
 <body class="flex flex-col bg-black items-center pt-14">
-        <div class="max-w-[70ch] px-3">
+        <div class="max-w-[70ch] px-3 lg:min-w-[70ch]">
             <nav>
                 <ul class="flex flex-row text-violet-500 text-lg justify-end mb-5">
-                    <li class="ml-3 hover:underline"><a href="home.html">Home</a></li>
-                    <li class="ml-3 hover:underline"><a href="blog.html">Blog</a></li>
-                    <li class="ml-3 hover:underline"><a href="rambles.html">Rambles</a></li>
+                    <li class="ml-3 hover:underline"><a href="home.html" target="_self">Home</a></li>
+                    <li class="ml-3 hover:underline"><a href="blog.html" target="_self">Blog</a></li>
+                    <li class="ml-3 hover:underline"><a href="rambles.html" target="_self">Rambles</a></li>
                 </ul>
             </nav>
             <div id="main">
-                <h1 class="text-4xl text-white">UNDER CONSTRUCTIION</h1>
+                <i class="text-gray-500">These are basically my private twitter, I use this to vent, please don't take any of this seriously</i>
+                <div id="rambles" class="mt-8">
+
+                </div>
             </div>
+            <footer class="flex flex-row text-gray-500 text-sm justify-center py-4 lg:py-8">
+                <a href="mailto:jawkaixuan99@gmail.com" class="hover:underline mx-3">email</a>
+                <a href="https://github.com/Jawkx" class="hover:underline mx-3">github</a>
+            </footer>
         </div>
 </body>
 </html>
