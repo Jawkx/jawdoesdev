@@ -7,12 +7,16 @@ interface Ramble {
     date: Date
 }
 
-const content = await input({ message: 'Ramble' });
+try {
+    const content = await input({ message: 'Ramble:' });
+    const date = new Date()
 
-const date = new Date()
+    const typedRambles = rambles as unknown as Ramble[]
 
-const typedRambles = rambles as unknown as Ramble[]
+    const updatedRambles: Ramble[] = typedRambles.concat({ content: content, date: date })
+    fs.writeFileSync("src/content/rambles.json", JSON.stringify(updatedRambles))
+} catch (e) {
+    console.log(e)
+}
 
-const updatedRambles: Ramble[] = typedRambles.concat({ content: content, date: date })
 
-fs.writeFileSync("src/content/rambles.json", JSON.stringify(updatedRambles))
