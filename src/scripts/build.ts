@@ -39,9 +39,9 @@ typedRambles.forEach((ramble) => {
     })
 
     const $content = cheerio.load(`
-        <div>
-            <h3>${ramble.content}</h3>
-            <p>${formattedDate}</p>
+        <div class="my-5">
+            <h3 class="font-medium">${ramble.content}</h3>
+            <p class="text-gray-800">${formattedDate}</p>
         </div>
     `)
 
