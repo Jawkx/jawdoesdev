@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const site = {
+  name: 'Jaw',
+  title: 'Software engineer @coingecko',
+  github: 'https://github.com/Jawkx'
+};
+
+const posts = (await getCollection('post')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit'
+  }).format(date);
+---
+
+<BaseLayout title={`${site.name} | Blog`}>
+  <main class="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8">
+    <section class="flex flex-col gap-3">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">{site.name}</h1>
+      <p class="text-sm uppercase tracking-[0.2em] text-white/60">
+        Software engineer{' '}
+        <a
+          href="https://www.coingecko.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-4 decoration-white/60 transition hover:decoration-white"
+        >
+          @coingecko
+        </a>
+      </p>
+      <div class="flex flex-wrap items-center gap-4 text-sm text-white/70">
+        <a
+          href="/about"
+          class="underline underline-offset-4 decoration-white/60 transition hover:text-white hover:decoration-white"
+        >
+          About me
+        </a>
+        <a
+          href={site.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-4 decoration-white/60 transition hover:text-white hover:decoration-white"
+        >
+          Github
+        </a>
+        <a
+          href="/kino"
+          class="underline underline-offset-4 decoration-white/60 transition hover:text-white hover:decoration-white"
+        >
+          Kino
+        </a>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm uppercase tracking-[0.3em] text-white/50">Posts</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <a
+            class="group flex w-full flex-col gap-3 border border-white/20 p-6 no-underline transition hover:border-white/60"
+            href={`/post/${post.slug}`}
+          >
+            <p class="text-xs uppercase tracking-[0.2em] text-white/50">
+              {formatDate(post.data.date)}
+            </p>
+            <h3 class="text-lg font-semibold text-white">{post.data.title}</h3>
+            <p class="text-sm text-white/65">{post.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>

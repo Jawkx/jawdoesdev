@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const links = [
+  { label: 'Stalker (1979) — Tarkovsky', href: 'https://www.criterion.com/films/715-stalker' },
+  { label: 'In the Mood for Love (2000) — Wong Kar-wai', href: 'https://letterboxd.com/film/in-the-mood-for-love/' },
+  { label: 'Tokyo Story (1953) — Ozu', href: 'https://www.criterion.com/films/351-tokyo-story' },
+  { label: 'There Will Be Blood (2007) — PTA', href: 'https://letterboxd.com/film/there-will-be-blood/' },
+  { label: 'Memories of Murder (2003) — Bong Joon-ho', href: 'https://letterboxd.com/film/memories-of-murder/' },
+  { label: 'The Lives of Others (2006) — Florian Henckel von Donnersmarck', href: 'https://letterboxd.com/film/the-lives-of-others/' }
+];
+---
+
+<BaseLayout title="Kino | Jaw">
+  <main class="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6 lg:px-8">
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/60 underline underline-offset-4 decoration-white/60 transition hover:text-white hover:decoration-white"
+    >
+      ← Back
+    </a>
+
+    <header class="flex flex-col gap-3">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Kino</h1>
+      <p class="text-sm text-white/70">
+        meaning of kino from urban dictionary: Excellent, superb, of the highest quality
+      </p>
+    </header>
+
+    <section class="flex flex-col gap-3 text-sm text-white/75">
+      {links.map((item) => (
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-4 decoration-white/60 transition hover:text-white hover:decoration-white"
+        >
+          {item.label}
+        </a>
+      ))}
+    </section>
+  </main>
+</BaseLayout>

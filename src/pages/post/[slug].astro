@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('post');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit'
+  }).format(date);
+---
+
+<BaseLayout title={`${post.data.title} | Jaw`}>
+  <main class="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6 lg:px-8">
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/60 underline underline-offset-4 decoration-white/60 transition hover:text-white hover:decoration-white"
+    >
+      ← Back
+    </a>
+
+    <header class="flex flex-col gap-3">
+      <p class="text-xs uppercase tracking-[0.2em] text-white/50">
+        Published {formatDate(post.data.date)}
+      </p>
+      <h1 class="text-3xl font-semibold leading-tight sm:text-4xl">{post.data.title}</h1>
+      <p class="text-sm text-white/65">{post.data.description}</p>
+    </header>
+
+    <article class="space-y-5 text-sm leading-relaxed text-white/75 [&_a]:text-white [&_a]:underline [&_h2]:text-white [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h3]:text-white [&_h3]:text-lg [&_h3]:font-semibold">
+      <Content />
+    </article>
+  </main>
+</BaseLayout>
