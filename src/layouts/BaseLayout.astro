@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 
 const { title = 'Jaw' } = Astro.props;
 ---
@@ -13,7 +14,10 @@ const { title = 'Jaw' } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-black text-white">
-    <slot />
+  <body class="bg-black text-white min-h-screen flex flex-col">
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
