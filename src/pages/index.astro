@@ -8,7 +8,7 @@ const site = {
   github: 'https://github.com/Jawkx'
 };
 
-const posts = (await getCollection('post')).sort(
+const posts = (await getCollection('post', ({ slug }) => slug !== 'template')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
@@ -60,18 +60,22 @@ const formatDate = (date: Date) =>
         <h2 class="text-sm uppercase tracking-[0.3em] text-white/50">Posts</h2>
       </div>
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <a
-            class="group flex w-full flex-col gap-3 border border-white/20 p-6 no-underline transition hover:border-white/60"
-            href={`/post/${post.slug}`}
-          >
-            <p class="text-xs uppercase tracking-[0.2em] text-white/50">
-              {formatDate(post.data.date)}
-            </p>
-            <h3 class="text-lg font-semibold text-white">{post.data.title}</h3>
-            <p class="text-sm text-white/65">{post.data.description}</p>
-          </a>
-        ))}
+        {posts.length === 0 ? (
+          <p class="col-span-full text-sm text-white/50">No posts yet. Check back soon!</p>
+        ) : (
+          posts.map((post) => (
+            <a
+              class="group flex w-full flex-col gap-3 border border-white/20 p-6 no-underline transition hover:border-white/60"
+              href={`/post/${post.slug}`}
+            >
+              <p class="text-xs uppercase tracking-[0.2em] text-white/50">
+                {formatDate(post.data.date)}
+              </p>
+              <h3 class="text-lg font-semibold text-white">{post.data.title}</h3>
+              <p class="text-sm text-white/65">{post.data.description}</p>
+            </a>
+          ))
+        )}
       </div>
     </section>
 
