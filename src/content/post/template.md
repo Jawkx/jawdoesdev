@@ -1,7 +1,7 @@
 ---
 title: Your Post Title
 description: A brief description of what this post is about (shown in the post list)
-date: YYYY-MM-DD
+date: 2024-01-01
 ---
 
 Your content goes here. Write in Markdown.
