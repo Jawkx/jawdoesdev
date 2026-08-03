@@ -9,4 +9,14 @@ const post = defineCollection({
   })
 });
 
-export const collections = { post };
+const project = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    context: z.string(),
+    status: z.string(),
+    link: z.string().url()
+  })
+});
+
+export const collections = { post, project };

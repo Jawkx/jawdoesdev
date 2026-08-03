@@ -14,7 +14,7 @@ Your content goes here. Write in Markdown.
 
 **Bold** and *italic* text work too.
 
-```code
+```js
 // Code blocks are supported
 function example() {
   return "Hello World";

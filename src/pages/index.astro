@@ -8,6 +8,10 @@ const site = {
   github: 'https://github.com/Jawkx'
 };
 
+const projects = (await getCollection('project', ({ slug }) => slug !== 'project-template')).sort(
+  (a, b) => a.data.title.localeCompare(b.data.title)
+);
+
 const posts = (await getCollection('post', ({ slug }) => slug !== 'template')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
@@ -55,9 +59,55 @@ const formatDate = (date: Date) =>
       </div>
     </section>
 
-    <section class="flex flex-col gap-4">
+    <section class="flex flex-col gap-4" aria-labelledby="projects-heading">
+      <h2 id="projects-heading" class="text-sm uppercase tracking-[0.3em] text-white/50">
+        Projects
+      </h2>
+      <div class="flex flex-col gap-5">
+        {projects.length === 0 ? (
+          <p class="text-sm text-white/50">No projects yet. Check back soon!</p>
+        ) : (
+          projects.map((project) => (
+            <div class="relative -mx-3 grid gap-2 px-3 py-2 hover:bg-white/[0.04] sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-8">
+              <a
+                class="absolute inset-0 z-10"
+                href={project.data.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.data.title}`}
+              ></a>
+              <div class="pointer-events-none relative z-20 flex flex-col gap-1.5">
+                <h3 class="text-base font-semibold text-white">
+                  {project.data.title}
+                </h3>
+                <p class="max-w-2xl text-sm leading-relaxed text-white/55">
+                  {project.data.context.split(/(https?:\/\/[^\s]+)/g).map((part) =>
+                    part.startsWith('http') ? (
+                      <a
+                        class="pointer-events-auto underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white"
+                        href={part}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {part}
+                      </a>
+                    ) : part
+                  )}
+                </p>
+              </div>
+              <p class="pointer-events-none relative z-20 flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-white/40 sm:pt-1">
+                <span class="text-[7px] text-white/30" aria-hidden="true">●</span>
+                {project.data.status}
+              </p>
+            </div>
+          ))
+        )}
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4" aria-labelledby="posts-heading">
       <div class="flex items-center justify-between">
-        <h2 class="text-sm uppercase tracking-[0.3em] text-white/50">Posts</h2>
+        <h2 id="posts-heading" class="text-sm uppercase tracking-[0.3em] text-white/50">Posts</h2>
       </div>
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts.length === 0 ? (
