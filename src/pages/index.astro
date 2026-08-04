@@ -95,10 +95,30 @@ const formatDate = (date: Date) =>
                   )}
                 </p>
               </div>
-              <p class="pointer-events-none relative z-20 flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-white/40 sm:pt-1">
-                <span class="text-[7px] text-white/30" aria-hidden="true">●</span>
-                {project.data.status}
-              </p>
+              {project.data.statusReason ? (
+                <div
+                  class="group/status relative z-30 flex w-fit cursor-default select-none items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-white/40 outline-none hover:text-white focus:text-white sm:justify-self-end sm:pt-1"
+                  tabindex="0"
+                  aria-describedby={`status-${project.slug}`}
+                >
+                  <span class="text-[7px] text-white/30" aria-hidden="true">●</span>
+                  {project.data.status}
+                  <div
+                    id={`status-${project.slug}`}
+                    role="tooltip"
+                    class="absolute left-0 top-full hidden w-64 max-w-[calc(100vw-2rem)] pt-2 group-hover/status:block group-focus/status:block sm:left-auto sm:right-0"
+                  >
+                    <p class="bg-[#171717] p-3 text-left text-xs normal-case leading-relaxed tracking-normal text-white/65 shadow-xl ring-1 ring-white/10">
+                      {project.data.statusReason}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <p class="pointer-events-none relative z-20 flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-white/40 sm:pt-1">
+                  <span class="text-[7px] text-white/30" aria-hidden="true">●</span>
+                  {project.data.status}
+                </p>
+              )}
             </div>
           ))
         )}

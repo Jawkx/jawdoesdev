@@ -7,6 +7,7 @@ Create a `.md` file in `src/content/project/` using four fields:
 title: My Project
 context: One short sentence about what the project does.
 status: building
+statusReason: The first version is still being tested.
 link: https://example.com
 ---
 ```
@@ -14,6 +15,7 @@ link: https://example.com
 - `title` — project name.
 - `context` — short description shown below the title.
 - `status` — any concise label, such as `building`, `live`, or `archived`.
+- `statusReason` — optional explanation shown when the status is hovered or focused.
 - `link` — full URL opened when the project is selected.
 
 Use `src/content/project/project-template.md` as a starting point. The Markdown file only defines the project entry; projects do not generate detail pages.

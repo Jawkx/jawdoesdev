@@ -15,6 +15,7 @@ const project = defineCollection({
     title: z.string(),
     context: z.string(),
     status: z.string(),
+    statusReason: z.string().optional(),
     link: z.string().url()
   })
 });
