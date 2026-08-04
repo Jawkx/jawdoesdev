@@ -9,7 +9,9 @@ const site = {
 };
 
 const projects = (await getCollection('project', ({ slug }) => slug !== 'project-template')).sort(
-  (a, b) => a.data.title.localeCompare(b.data.title)
+  (a, b) =>
+    (a.data.order ?? Number.MAX_SAFE_INTEGER) - (b.data.order ?? Number.MAX_SAFE_INTEGER) ||
+    a.data.title.localeCompare(b.data.title)
 );
 
 const posts = (await getCollection('post', ({ slug }) => slug !== 'template')).sort(
@@ -22,6 +24,7 @@ const formatDate = (date: Date) =>
     month: 'short',
     day: '2-digit'
   }).format(date);
+
 ---
 
 <BaseLayout title={`${site.name} | Blog`}>
@@ -129,20 +132,19 @@ const formatDate = (date: Date) =>
       <div class="flex items-center justify-between">
         <h2 id="posts-heading" class="text-sm uppercase tracking-[0.3em] text-white/50">Posts</h2>
       </div>
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="flex flex-col gap-1">
         {posts.length === 0 ? (
-          <p class="col-span-full text-sm text-white/50">No posts yet. Check back soon!</p>
+          <p class="text-sm text-white/50">No posts yet. Check back soon!</p>
         ) : (
           posts.map((post) => (
             <a
-              class="group flex w-full flex-col gap-3 border border-white/20 p-6 no-underline transition hover:border-white/60"
+              class="-mx-3 grid gap-1 px-3 py-2 no-underline transition hover:bg-white/[0.04] sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-8"
               href={`/post/${post.slug}`}
             >
-              <p class="text-xs uppercase tracking-[0.2em] text-white/50">
+              <h3 class="text-base font-semibold text-white">{post.data.title}</h3>
+              <time class="text-xs text-white/40" datetime={post.data.date.toISOString()}>
                 {formatDate(post.data.date)}
-              </p>
-              <h3 class="text-lg font-semibold text-white">{post.data.title}</h3>
-              <p class="text-sm text-white/65">{post.data.description}</p>
+              </time>
             </a>
           ))
         )}
